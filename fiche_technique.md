@@ -1,6 +1,6 @@
 # 🧾 FICHE TECHNIQUE DU PROJET
 
-## Nom du projet
+## Alerte Lubumbashi
 
 **Plateforme d’alerte d’urgence géolocalisée (citoyens & autorités)**
 
@@ -50,7 +50,7 @@ Application multi-plateforme permettant la **création, diffusion et gestion d�
 
 ### Technologies
 
-* **Langage** : Python 3.11+
+* **Langage** : Python 3.5
 * **Framework** : FastAPI
 * **Base de données** : PostgreSQL
 * **Extension géographique** : PostGIS
@@ -88,11 +88,11 @@ Application multi-plateforme permettant la **création, diffusion et gestion d�
 
 ### Technologies
 
-* React.js ou Next.js
+* React.js 
 * TypeScript
 * Tailwind CSS / Material UI
 * Axios
-* Leaflet ou Google Maps
+* Google Maps
 
 ### Fonctionnalités
 
@@ -115,7 +115,7 @@ Application multi-plateforme permettant la **création, diffusion et gestion d�
 
 ### Technologies
 
-* React.js ou Vue.js
+* React.js
 * PWA (Progressive Web App)
 * Leaflet + OpenStreetMap
 * API Geolocation navigateur
@@ -138,7 +138,7 @@ Application multi-plateforme permettant la **création, diffusion et gestion d�
 
 ### Technologies recommandées
 
-* **Flutter** (Android & iOS)
+* **Flutter** (Android & iOS) (Android pour la V1)
 * Firebase (FCM)
 * GPS natif
 
