@@ -15,16 +15,16 @@ router = APIRouter(prefix="/auth", tags=["Auth"])
 
 @router.post("/register", response_model=TokenSchema)
 def register(payload: RegisterSchema, db: Session = Depends(get_db)):
-service = AuthService(UserRepository(db))
-token = service.register(payload.full_name, payload.email, payload.password)
-return {"access_token": token}
+    service = AuthService(UserRepository(db))
+    token = service.register(payload.full_name, payload.email, payload.password)
+    return {"access_token": token}
 
 
 
 
 @router.post("/login", response_model=TokenSchema)
 def login(payload: LoginSchema, db: Session = Depends(get_db)):
-service = AuthService(UserRepository(db))
-token = service.login(payload.email, payload.password)
-return {"access_token": token}
+    service = AuthService(UserRepository(db))
+    token = service.login(payload.email, payload.password)
+    return {"access_token": token}
 
