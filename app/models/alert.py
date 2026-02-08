@@ -2,6 +2,7 @@ from sqlalchemy import Column, String, Integer, Boolean, DateTime, Enum, Foreign
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func, text
 from geoalchemy2 import Geometry
+from geoalchemy2.shape import to_shape
 import uuid
 from app.core.database import Base
 import enum

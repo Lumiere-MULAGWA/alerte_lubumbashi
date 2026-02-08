@@ -2,7 +2,7 @@ from pydantic import BaseModel, EmailStr, validator
 from typing import Optional
 from datetime import datetime
 import uuid
-from app.models.user import UserRole
+from app.models.users import UserRole
 
 # Base
 class UserBase(BaseModel):
