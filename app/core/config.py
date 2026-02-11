@@ -18,8 +18,12 @@ class Settings(BaseSettings):
     
     # Database
     DATABASE_URL: str = "postgresql://user:password@localhost:5432/alert_db"
+    POSTGRES_USER: str = "alert_user"
+    POSTGRES_PASSWORD: str = "strong_password"
+    POSTGRES_DB: str = "alert_db"
     
     # CORS
+    ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
     CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8080"]
     
     # Alert Settings
