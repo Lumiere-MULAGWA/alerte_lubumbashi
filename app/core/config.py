@@ -19,11 +19,11 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
     # Database
-    DATABASE_URL: str = "postgresql://user:password@localhost:5432/alert_db"
+    DATABASE_URL: str = "postgresql://alert_user:strong_password@localhost:5432/alert_db"
     
     # CORS - Utiliser des chaînes séparées par des virgules
-    ALLOWED_HOSTS: str = "localhost,127.0.0.1"
-    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:8080"
+    ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
+    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8080"]
     
     # Alert Settings
     ALERT_LIMIT_THRESHOLD: int = 5
