@@ -7,6 +7,8 @@ from app.models.alert import Alert, AlertStatus
 from app.schemas.alert import AlertCreate
 from app.core.config import settings
 
+
+#crud des alertes et des documents lier aux alertes 
 class CRUDAlert:
     def get(self, db: Session, alert_id: uuid.UUID) -> Optional[Alert]:
         return db.query(Alert).filter(Alert.id == alert_id).first()
