@@ -5,9 +5,9 @@ import uuid
 from app.core.database import get_db
 from app.schemas.alert import Alert, AlertCreate, AlertWithDistance, AlertStats
 from app.schemas.user import User
-from app.dependencies import get_current_user, get_current_authority_user
-from app.services.alert_service import AlertService
-from app.services.notification_service import NotificationService
+from app.dependencies import get_current_admin_user, get_current_user, get_current_authority_user
+from app.service.alert_service import AlertService
+from app.service.notification_service import NotificationService
 
 router = APIRouter()
 
