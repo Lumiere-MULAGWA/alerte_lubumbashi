@@ -1,14 +1,12 @@
-# app/core/config.py - Version compatible avec les chaînes simples
 from pydantic_settings import BaseSettings
 from typing import List, Optional
-from pydantic import field_validator
 import secrets
 
 class Settings(BaseSettings):
     # App
     PROJECT_NAME: str = "Alert App API"
     VERSION: str = "1.0.0"
-    DEBUG: bool = False
+    DEBUG: bool = True
     
     # API
     API_V1_STR: str = "/api/v1"
@@ -18,10 +16,10 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
-    # Database
-    DATABASE_URL: str = "postgresql://alert_user:strong_password@localhost:5432/alert_db"
+    # Database - MySQL
+    DATABASE_URL: str = "mysql+pymysql://alert_user:strong_password@localhost:3306/alert_db"
     
-    # CORS - Utiliser des chaînes séparées par des virgules
+    # CORS
     ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
     CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8080"]
     
@@ -32,28 +30,9 @@ class Settings(BaseSettings):
     MAX_ALERT_RADIUS: int = 5000
     ALERT_DURATION_HOURS: int = 24
     
-    # Firebase
-    FCM_SERVER_KEY: Optional[str] = None
-    
-    @field_validator("ALLOWED_HOSTS", mode="before")
-    @classmethod
-    def parse_allowed_hosts(cls, v):
-        """Convertit une chaîne CSV en liste"""
-        if isinstance(v, str):
-            return [host.strip() for host in v.split(",") if host.strip()]
-        return v
-    
-    @field_validator("CORS_ORIGINS", mode="before")
-    @classmethod
-    def parse_cors_origins(cls, v):
-        """Convertit une chaîne CSV en liste"""
-        if isinstance(v, str):
-            return [origin.strip() for origin in v.split(",") if origin.strip()]
-        return v
-    
     class Config:
         env_file = ".env"
         case_sensitive = True
-        extra = "ignore"  # Ignorer les champs supplémentaires
+        extra = "ignore"
 
 settings = Settings()
