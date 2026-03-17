@@ -1,8 +1,6 @@
-from sqlalchemy import Column, String, Integer, Boolean, DateTime, Enum, ForeignKey
-from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.sql import func, text
-from geoalchemy2 import Geometry
-from geoalchemy2.shape import to_shape
+from sqlalchemy import Column, String, Integer, Boolean, DateTime, Enum, ForeignKey, Float
+from sqlalchemy.dialects.mysql import CHAR
+from sqlalchemy.sql import func
 import uuid
 from app.core.database import Base
 import enum
@@ -20,7 +18,6 @@ class AlertType(str, enum.Enum):
 class AlertSource(str, enum.Enum):
     CITIZEN = "citizen"
     AUTHORITY = "authority"
-    ADMIN = "admin" 
 
 class AlertStatus(str, enum.Enum):
     ACTIVE = "active"
@@ -30,23 +27,24 @@ class AlertStatus(str, enum.Enum):
 class Alert(Base):
     __tablename__ = "alerts"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    title = Column(String, nullable=False)
-    description = Column(String)
+    id = Column(CHAR(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
+    title = Column(String(255), nullable=False)
+    description = Column(String(1000))
     type = Column(Enum(AlertType), nullable=False)
     source = Column(Enum(AlertSource), nullable=False, default=AlertSource.CITIZEN)
     is_official = Column(Boolean, default=False)
     
-    # Géolocalisation
-    location = Column(Geometry('POINT', srid=4326), nullable=False)
-    radius = Column(Integer, default=1000)  # en mètres
+    # Géolocalisation simple
+    latitude = Column(Float, nullable=False)
+    longitude = Column(Float, nullable=False)
+    radius = Column(Integer, default=1000)
     
     # Statut
     status = Column(Enum(AlertStatus), default=AlertStatus.ACTIVE, nullable=False)
     report_count = Column(Integer, default=0)
     
     # Relations
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    user_id = Column(CHAR(36), ForeignKey("users.id"), nullable=False)
     
     # Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())

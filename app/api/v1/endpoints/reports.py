@@ -6,7 +6,7 @@ from app.schemas.report import Report, ReportCreate
 from app.schemas.alert import Alert
 from app.schemas.user import User
 from app.dependencies import get_current_user
-from app.services.alert_service import AlertService
+from app.service.alert_service import AlertService
 
 router = APIRouter()
 
